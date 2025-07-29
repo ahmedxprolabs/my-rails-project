@@ -1,17 +1,15 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [ :show, :edit, :update, :destroy ]
-  before_action :set_post, only: [ :new, :create, :index ]
+  before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ new create index ]
 
-  def index
-    @comments = @post.comments
-  end
+  def index; end
 
   def new
-    @comment = @post.comments.build
+    @comment = @comments.build
   end
 
   def create
-    @comment = @post.comments.build(comment_params)
+    @comment = @comments.build(comment_params)
     if @comment.save
       redirect_to @post, notice: "Comment added"
     else
@@ -40,11 +38,12 @@ class CommentsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:post_id])
+    @comments = @post.comments
   end
 
   def set_comment
     @comment = Comment.find(params[:id])
-  end
+end
 
   def comment_params
     params.require(:comment).permit(:content)
