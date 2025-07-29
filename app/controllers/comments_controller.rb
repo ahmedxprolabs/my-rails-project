@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[ show edit update destroy ]
-  before_action :set_post, only: %i[ new create index ]
+  before_action :set_comment, only: %i[show edit update destroy]
+  before_action :set_userpost, only: %i[new create index]
 
   def index; end
 
@@ -36,7 +36,7 @@ class CommentsController < ApplicationController
 
   private
 
-  def set_post
+  def set_userpost
     @post = Post.find(params[:post_id])
     @comments = @post.comments
   end
