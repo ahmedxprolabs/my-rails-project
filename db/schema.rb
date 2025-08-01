@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_31_144338) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_01_111509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -25,6 +25,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_31_144338) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "content"
+  end
+
+  create_table "cars", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "car_type"
+    t.string "Color"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -67,6 +75,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_31_144338) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "verifications", force: :cascade do |t|
+    t.string "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "profit"
   end
 
   add_foreign_key "comments", "posts"
