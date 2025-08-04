@@ -1,4 +1,4 @@
-class Drone < ApplicationRecord
+class Drone < ApplicationRecord    
   # == Basic Validations ==
   validates :drone_name, :drone_type, presence: true
   validates :drone_id, absence: true
