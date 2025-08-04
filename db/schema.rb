@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_01_130126) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_04_110642) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -41,6 +41,27 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_01_130126) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "age"
+  end
+
+  create_table "drones", force: :cascade do |t|
+    t.string "drone_name"
+    t.string "drone_type"
+    t.integer "flight_hours"
+    t.float "payload_capacity"
+    t.boolean "restriction_zone"
+    t.string "operating_area"
+    t.string "drone_id"
+    t.text "maintenance_notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "hello_worlds", force: :cascade do |t|
