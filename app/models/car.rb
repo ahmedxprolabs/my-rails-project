@@ -11,4 +11,3 @@ class Car < ApplicationRecord
     car_type == "honda"  
   end
 end
-
