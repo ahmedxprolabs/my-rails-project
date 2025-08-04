@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_28_144811) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_04_110642) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "animals", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "blogs", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "content"
+  end
+
+  create_table "cars", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "car_type"
+    t.string "Color"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -20,6 +41,33 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_28_144811) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "age"
+  end
+
+  create_table "drones", force: :cascade do |t|
+    t.string "drone_name"
+    t.string "drone_type"
+    t.integer "flight_hours"
+    t.float "payload_capacity"
+    t.boolean "restriction_zone"
+    t.string "operating_area"
+    t.string "drone_id"
+    t.text "maintenance_notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hello_worlds", force: :cascade do |t|
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "people", force: :cascade do |t|
@@ -34,5 +82,35 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_28_144811) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.decimal "price", precision: 10, scale: 2
+    t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "verifications", force: :cascade do |t|
+    t.string "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "profit"
+  end
+
   add_foreign_key "comments", "posts"
+  add_foreign_key "products", "users"
 end
