@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_04_110642) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_04_145407) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -20,11 +20,28 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_110642) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "authors", force: :cascade do |t|
+    t.string "name"
+    t.text "bio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "blogs", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "content"
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.string "genre"
+    t.date "published_on"
+    t.bigint "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_books_on_author_id"
   end
 
   create_table "cars", force: :cascade do |t|
@@ -111,6 +128,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_110642) do
     t.integer "profit"
   end
 
+  add_foreign_key "books", "authors"
   add_foreign_key "comments", "posts"
   add_foreign_key "products", "users"
 end
