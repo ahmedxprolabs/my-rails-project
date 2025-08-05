@@ -10,14 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_04_145407) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_05_141318) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.bigint "supplier_id", null: false
+    t.string "account_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["supplier_id"], name: "index_accounts_on_supplier_id"
+  end
 
   create_table "animals", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "appointments", force: :cascade do |t|
+    t.bigint "physician_id", null: false
+    t.bigint "patient_id", null: false
+    t.datetime "appointment_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+    t.index ["physician_id"], name: "index_appointments_on_physician_id"
   end
 
   create_table "authors", force: :cascade do |t|
@@ -87,7 +105,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_145407) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "patients", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "people", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "physicians", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -114,6 +144,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_145407) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "suppliers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -128,6 +164,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_145407) do
     t.integer "profit"
   end
 
+  add_foreign_key "accounts", "suppliers"
+  add_foreign_key "appointments", "patients"
+  add_foreign_key "appointments", "physicians"
   add_foreign_key "books", "authors"
   add_foreign_key "comments", "posts"
   add_foreign_key "products", "users"
