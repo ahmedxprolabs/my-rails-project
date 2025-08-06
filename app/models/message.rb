@@ -1,3 +1,3 @@
 class Message < ApplicationRecord
-    include Entryable
+  include Entryable
 end

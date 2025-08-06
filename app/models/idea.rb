@@ -1,3 +1,3 @@
 class Idea < ApplicationRecord
-    include Entryable
+  include Entryable
 end
