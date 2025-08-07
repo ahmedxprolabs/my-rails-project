@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_06_073606) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_07_141504) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -83,6 +83,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_06_073606) do
     t.string "Color"
   end
 
+  create_table "clients", force: :cascade do |t|
+    t.integer "store_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.bigint "post_id", null: false
@@ -112,8 +121,42 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_06_073606) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "entries", force: :cascade do |t|
+    t.string "entryable_type"
+    t.bigint "entryable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "hello_worlds", force: :cascade do |t|
     t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ideas", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "influencers", force: :cascade do |t|
+    t.string "name"
+    t.string "handle"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "reel_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reel_id"], name: "index_likes_on_reel_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "subject"
+    t.string "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -164,6 +207,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_06_073606) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
+  create_table "reels", force: :cascade do |t|
+    t.string "title"
+    t.integer "views"
+    t.bigint "influencer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["influencer_id"], name: "index_reels_on_influencer_id"
+  end
+
   create_table "reports", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -211,5 +263,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_06_073606) do
   add_foreign_key "appointments", "physicians"
   add_foreign_key "books", "authors"
   add_foreign_key "comments", "posts"
+  add_foreign_key "likes", "reels"
   add_foreign_key "products", "users"
+  add_foreign_key "reels", "influencers"
 end
