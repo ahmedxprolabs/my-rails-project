@@ -22,5 +22,5 @@
 #seeds for toy model
 Toy.create!([
   { name: 'Rubber Duck', price: 4.99, in_stock: true, description: 'Small yellow rubber duck.' },
-  { name: 'Toy Car',      price: 9.50, in_stock: false, description: 'Red pull-back car.' }
+  { name: 'Toy Car', price: 9.50, in_stock: false, description: 'Red pull-back car.' }
 ])
