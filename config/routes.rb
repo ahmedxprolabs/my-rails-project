@@ -10,7 +10,10 @@
 # end
 # get "/new", to: "posts#new", as: "formss"  (named routes)
 Rails.application.routes.draw do
-  resources :diaries
-  root "diaries#index"
-  #resources :toys, only: [:index, :show]
+  root "toys#index"
+  resources :toys do
+    collection do
+      get :helpers_demo
+    end
+  end
 end

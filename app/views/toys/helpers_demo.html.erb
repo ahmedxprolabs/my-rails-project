@@ -1,0 +1,33 @@
+<h1>Helpers Demo</h1>
+
+<h2>Dates</h2>
+<p><%= l @date, format: :long %> (localized date)</p>
+<p><%= distance_of_time_in_words(Time.current, 5.days.from_now) %> from now</p>
+
+<h2>Numbers</h2>
+<p><%= number_to_currency(@number) %></p>
+<p><%= number_with_delimiter(@number) %></p>
+<p><%= number_to_percentage(85.5, precision: 1) %></p>
+
+<h2>Text</h2>
+<p><%= simple_format("Line one\nLine two") %></p>
+<p><%= truncate("This is a very long sentence about toys.", length: 20) %></p>
+
+<h2>Forms</h2>
+<%= form_with url: toys_path, method: :get do %>
+  <%= label_tag :search, "Search toys" %>
+  <%= text_field_tag :search %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<h2>Navigation</h2>
+<p><%= button_to "Go to Home", root_path %></p>
+<p><%= link_to "Toys Index", toys_path %></p>
+<p><%= mail_to "ahmed.rasul@xprolabs.com", "Email Us" %></p>
+
+<h2>Sanitization</h2>
+<p>sanitize: <%= sanitize(@html_text) %></p>
+<p>sanitize_css: <%= sanitize_css("color: red; background: expression(alert('XSS'))") %></p>
+<p>strip_links: <%= strip_links(@html_text) %></p>
+<p>strip_tags: <%= strip_tags(@html_text) %></p>
+    
