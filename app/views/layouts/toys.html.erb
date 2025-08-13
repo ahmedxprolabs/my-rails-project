@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Toy Store</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "toys", media: "all" %>
+</head>
+<body>
+  <header>
+    <h1>Toy Store</h1>
+    <nav>
+      <%= link_to "All Toys", toys_path %>
+    </nav>
+  </header>
+
+  <main>
+    <%= yield %>
+  </main>
+
+  <footer>
+    &copy; <%= Time.current.year %> Toy Store
+  </footer>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<h1>My Diaries</h1>
+
+<%= link_to "New Diary", new_diary_path %>
+
+<% @diaries.each do |d| %>
+  <%= render partial: "diary", locals: { diary: d } %>
+<% end %>

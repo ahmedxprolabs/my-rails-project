@@ -12,9 +12,15 @@
 # Post.create(title: "pen",content:"part3")
 
 # db/seeds.rb
-Client.create(first_name: "Lifo", store_id: 1)
-Client.create(first_name: "Fifo", store_id: 2)
-Client.create(first_name: "Filo", store_id: 3)
-Client.create(first_name: "Sara", store_id: 2)
-Client.create(first_name: "Russel", store_id: 1)
-Client.create(first_name: "James", store_id: 3)
+# Client.create(first_name: "Lifo", store_id: 1)
+# Client.create(first_name: "Fifo", store_id: 2)
+# Client.create(first_name: "Filo", store_id: 3)
+# Client.create(first_name: "Sara", store_id: 2)
+# Client.create(first_name: "Russel", store_id: 1)
+# Client.create(first_name: "James", store_id: 3)
+
+#seeds for toy model
+Toy.create!([
+  { name: 'Rubber Duck', price: 4.99, in_stock: true, description: 'Small yellow rubber duck.' },
+  { name: 'Toy Car', price: 9.50, in_stock: false, description: 'Red pull-back car.' }
+])
